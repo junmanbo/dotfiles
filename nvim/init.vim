@@ -95,7 +95,7 @@ inoremap <leader>s <ESC>:w<CR>
 colorscheme gruvbox
 
 " Configuration
-autocmd FileType python source $HOME/.config/nvim/config/python.vim
+autocmd FileType python source $HOME/.config/nvim/ftplugin/python.vim
 source $HOME/.config/nvim/ftplugin/coc.vim
 source $HOME/.config/nvim/ftplugin/nerdcommenter.vim
 
