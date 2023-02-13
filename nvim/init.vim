@@ -19,6 +19,7 @@ Plug 'scrooloose/nerdtree'                      " File explorer
 Plug 'scrooloose/nerdcommenter'                 " Commenting made simple
 Plug 'jiangmiao/auto-pairs'                     " Insert or delete brackets, parens, quotes in pair
 Plug 'yggdroot/indentline'                      " Show indent lines
+Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file, buffer, mru, tag, etc finder'
 
 " Completion / Linter / Snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
@@ -83,7 +84,9 @@ nnoremap <leader>bq :bp <BAR> bd #<CR>
 nnoremap <Leader>bs :ls<CR>:b<Space>
 
 " 터미널 열기
-nnoremap <leader>t :term<CR>
+" nnoremap <leader>t :term<CR>
+nnoremap <leader>t :sp<CR>:term<CR>
+
 
 " 저장
 nnoremap <leader>s :w<CR>
@@ -149,6 +152,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " 폴더 열림 닫힘 표시
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden = 1
 
 " fugitive git bindings
 nnoremap <leader>ga :Git add %:p<CR><CR>
@@ -166,3 +170,18 @@ nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
