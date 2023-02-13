@@ -1,0 +1,19 @@
+{
+  "python.linting.pylintPath": "flake8",
+  "python.formatting.provider": "black",
+  "python.formatting.blackdHTTPHeaders": {
+    "X-Fast-Or-Safe": "fast"
+  },
+  "python.formatting.onSave": true,
+  "python.jediEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.formatting.autopep8Enabled": false,
+  "python.formatting.yapfEnabled": false,
+  "python.formatting.blackEnabled": true,
+  "python.linting.flake8Args": [
+    "--ignore=E203,E501,W503"
+  ]
+}
+
