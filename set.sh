@@ -15,7 +15,7 @@ case $CHOICE in
         python -m pip install flake8 black
    ;;
     u)
-        sudo apt install tmux neovim nodejs npm python-is-python3 zsh
+        sudo apt install tmux neovim nodejs npm python3-pip python-is-python3 zsh
         python3 -m pip install --upgrade pip
         python3 -m pip install flake8 black
    ;;
