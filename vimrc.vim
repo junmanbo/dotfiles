@@ -1,6 +1,6 @@
 " Install vim-plug if not found
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
@@ -95,9 +95,9 @@ inoremap <leader>s <ESC>:w<CR>
 colorscheme gruvbox
 
 " Configuration
-autocmd FileType python source $HOME/.config/nvim/ftplugin/python.vim
-source $HOME/.config/nvim/ftplugin/coc.vim
-source $HOME/.config/nvim/ftplugin/nerdcommenter.vim
+autocmd FileType python source $HOME/.vim/ftplugin/python.vim
+source $HOME/.vim/ftplugin/coc.vim
+source $HOME/.vim/ftplugin/nerdcommenter.vim
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
