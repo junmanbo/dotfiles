@@ -24,6 +24,7 @@ Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file, buffer, mru, tag, 
 " Completion / Linter / Snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
 Plug 'github/copilot.vim'                       " Copilot
+Plug 'psf/black', { 'branch': 'stable' }
 
 
 
