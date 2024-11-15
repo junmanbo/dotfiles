@@ -23,7 +23,7 @@ Plug 'ctrlpvim/ctrlp.vim'                       " Fuzzy file, buffer, mru, tag, 
 
 " Completion / Linter / Snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
-Plug 'github/copilot.vim'                       " Copilot
+"Plug 'github/copilot.vim'                       " Copilot
 Plug 'psf/black', { 'branch': 'stable' }
 
 
@@ -59,7 +59,6 @@ set hidden                      " Switch between buffers without having to save 
 set splitbelow                  " Open new windows below the current window.
 set splitright                  " Open new windows right of the current window.
 set updatetime=300              " Set the time to wait for a mapped sequence to complete.
-set signcolumn=yes              " Always show the signcolumn, otherwise it would shift the text each time
 set background=dark             " Set the background to dark
 filetype plugin indent on       " allow auto-indenting depending on file type
 filetype plugin on
