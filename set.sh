@@ -84,6 +84,8 @@ cp ~/dotfiles/vimrc.vim ~/.vimrc
 # Copying Tmux configuration file
 cp ~/dotfiles/tmux.conf ~/.tmux.conf
 
+echo "alias poetry='python3 -m poetry'" >> ~/.zshrc
+
 echo "Everything is Done!!"
 
 exit 0
