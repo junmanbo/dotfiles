@@ -16,10 +16,14 @@ case $CHOICE in
         sudo pacman -S python tmux nodejs npm clang zsh
    ;;
     u)
-        sudo apt install tmux wget curl gcc git python3-pip python-is-python3 zsh -y
+        sudo apt install tmux wget curl gcc git libncurses-dev python3-pip python-is-python3 zsh -y
+        sudo apt install python3-flake8 python3-poetry -y
    ;;
     r)
         sudo yum install tmux zsh wget curl gcc ncurses-devel libtool git python3 python3-pip -y --allowerasing
+        python3 -m pip install --upgrade pip
+        python3 -m pip install flake8 poetry
+        echo "alias poetry='python3 -m poetry'" >> ~/.zshrc
    ;;
     m)
         brew install tmux nvm vim
@@ -56,14 +60,14 @@ echo "Install vim..."
 git clone https://github.com/vim/vim.git ~/vim
 cd ~/vim/src
 make
-make install
+sudo make install
 
 # NVM 설치 스크립트
 echo "Install nvm..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 # NVM 설정 적용
-source ~/.bashrc
+source ~/.zshrc
 
 # 최신 LTS 버전의 Node.js 설치
 echo "Install latest Node.js LTS version..."
@@ -73,8 +77,6 @@ nvm install --lts
 echo "Check Node.js version..."
 node -v
 
-python3 -m pip install --upgrade pip
-python3 -m pip install flake8 poetry
 
 # Set vim
 echo "Copy vim configuration"
@@ -84,7 +86,6 @@ cp ~/dotfiles/vimrc.vim ~/.vimrc
 # Copying Tmux configuration file
 cp ~/dotfiles/tmux.conf ~/.tmux.conf
 
-echo "alias poetry='python3 -m poetry'" >> ~/.zshrc
 
 echo "Everything is Done!!"
 
