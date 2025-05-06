@@ -26,6 +26,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
 "Plug 'github/copilot.vim'                       " Copilot
 Plug 'psf/black', { 'branch': 'stable' }
 
+" SSH clipboard support in vim (yanking)
+Plug 'ojroques/vim-oscyank'                   " SSH clipboard support in vim
 
 
 call plug#end()
@@ -91,6 +93,10 @@ nnoremap <leader>t :sp<CR>:term<CR>
 " 저장
 nnoremap <leader>s :w<CR>
 inoremap <leader>s <ESC>:w<CR>
+
+" OSC yank keybinding
+nnoremap <leader>y :OSCYankReg<CR>
+inoremap <leader>y <ESC>:OSCYankReg<CR>
 
 colorscheme gruvbox
 
