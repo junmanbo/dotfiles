@@ -17,54 +17,41 @@ case $CHOICE in
    ;;
     u)
         sudo apt install tmux wget curl gcc git libncurses-dev python3-pip python-is-python3 zsh -y
-        sudo apt install python3-flake8 python3-poetry -y
    ;;
     r)
         sudo yum install tmux zsh wget curl gcc ncurses-devel libtool git python3 python3-pip -y --allowerasing
-        python3 -m pip install --upgrade pip
-        python3 -m pip install flake8 poetry
-        echo "alias poetry='python3 -m poetry'" >> ~/.zshrc
    ;;
     m)
         brew install tmux nvm vim
    ;;
 esac
 
-# ZSH Setting
-# Install oh my zsh
-echo "Install oh my zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
- 
-# Download ZSH plugin
-echo "Install autosuggestion plugin"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-echo "Install syntax highlighting plugin"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-echo "Install powerlevel10k theme"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-# .zshrc 파일 경로
-ZSHRC_FILE="$HOME/.zshrc"
-
-# ZSH_THEME 변경
-sed -i.bak 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' $ZSHRC_FILE
-
-# plugins 변경
-sed -i 's/plugins=(git)/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  vi-mode\n  git\n)/' $ZSHRC_FILE
-echo ".zshrc 파일이 성공적으로 업데이트되었습니다."
-
 # Install Latest VIM from source code
 echo "Install vim..."
-git clone https://github.com/vim/vim.git ~/vim
-cd ~/vim/src
+git clone https://github.com/vim/vim.git $HOME/vim
+cd $HOME/vim/src
 make
 sudo make install
+cd $HOME
 
 # NVM 설치 스크립트
 echo "Install nvm..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+# GitHub API를 통해 최신 릴리즈 태그 가져오기
+latest_tag=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+# 최신 태그를 가져오지 못한 경우 에러 처리
+if [ -z "$latest_tag" ]; then
+  echo "최신 릴리즈 정보를 가져오지 못했습니다."
+  exit 1
+fi
+
+# 최신 install.sh 스크립트 URL 생성
+install_script_url="https://raw.githubusercontent.com/nvm-sh/nvm/$latest_tag/install.sh"
+
+echo "NVM 최신 릴리즈 태그: $latest_tag"
+
+# 스크립트 다운로드 및 실행
+curl -o- "$install_script_url" | bash
 
 # NVM 설정 적용
 source ~/.zshrc
@@ -77,15 +64,16 @@ nvm install --lts
 echo "Check Node.js version..."
 node -v
 
-
 # Set vim
 echo "Copy vim configuration"
-cp -r ~/dotfiles/vim ~/.vim
-cp ~/dotfiles/vimrc.vim ~/.vimrc
+cp -r $HOME/dotfiles/vim $HOME/.vim
+cp $HOME/dotfiles/vimrc.vim $HOME/.vimrc
 
 # Copying Tmux configuration file
-cp ~/dotfiles/tmux.conf ~/.tmux.conf
+cp $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
+# Install UV (python package manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 echo "Everything is Done!!"
 
