@@ -27,12 +27,12 @@ case $CHOICE in
 esac
 
 # Install Latest VIM from source code
-echo "Install vim..."
-git clone https://github.com/vim/vim.git $HOME/vim
-cd $HOME/vim/src
-make
-sudo make install
-cd $HOME
+#echo "Install vim..."
+#git clone https://github.com/vim/vim.git $HOME/vim
+#cd $HOME/vim/src
+#make
+#sudo make install
+#cd $HOME
 
 # NVM 설치 스크립트
 echo "Install nvm..."
